@@ -1,141 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bubble Energy Storage</title>
-  <meta name="description" content="Bubble — High-temperature compressed-air energy storage for long-duration renewable firming.">
-  <link rel="icon" href="favicon.ico">
+  <meta charset="utf-8">
+  <title>Bubble — A Manifesto for Grid Permanence</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bubble: high-temperature compressed-air energy storage for a durable, lithium-independent grid.">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      color: #111;
-      background: #fff;
-      line-height: 1.6;
-    }
-    header {
-      background: linear-gradient(90deg, #0d1b2a, #1b263b);
-      color: #fff;
-      padding: 3rem 1.5rem;
-      text-align: center;
-    }
-    header h1 { font-size: 2.5rem; font-weight: 700; }
-    header p { font-size: 1.2rem; opacity: 0.85; margin-top: 0.5rem; }
-
-    section {
-      max-width: 900px;
-      margin: 4rem auto;
-      padding: 0 1.5rem;
-    }
-
-    h2 { color: #0d1b2a; font-size: 1.8rem; margin-bottom: 1rem; }
-    p { margin-bottom: 1rem; }
-
-    .highlight {
-      color: #0077b6;
-      font-weight: 600;
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    .metric {
-      background: #f3f6f9;
-      padding: 1.5rem;
-      border-radius: 10px;
-      text-align: center;
-    }
-    .metric h3 {
-      font-size: 1.6rem;
-      color: #0077b6;
-      margin-bottom: 0.3rem;
-    }
-    .metric p { font-size: 0.9rem; color: #333; }
-
-    .cta {
-      background: #0077b6;
-      color: #fff;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 2rem;
-    }
-
-    footer {
-      background: #0d1b2a;
-      color: #fff;
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-    }
-
-    a { color: #0077b6; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    :root { --ink:#0a0a0a; --muted:#666; --accent:#0b5; }
+    html,body { background:#fff; color:var(--ink); margin:0; padding:0; }
+    body { font:16px/1.7 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    main { max-width:760px; padding:6rem 1.5rem 4rem; margin:0 auto; }
+    h1 { font-weight:800; font-size:clamp(28px,6vw,46px); line-height:1.1; margin:0 0 2rem; }
+    h2 { font-weight:700; font-size:clamp(18px,3.5vw,22px); margin:2.5rem 0 0.75rem; }
+    p  { margin:0 0 1rem; }
+    .lede { font-size:clamp(18px,3.8vw,24px); font-weight:500; }
+    .quiet { color:var(--muted); }
+    .rule { height:1px; background:#e5e5e5; margin:2rem 0; border:0; }
+    a { color:inherit; text-decoration:underline; text-decoration-color:#bbb; text-underline-offset:2px; }
+    .cta { display:inline-block; margin-top:2rem; padding:.75rem 1rem; border:1px solid #111; text-decoration:none; }
+    footer { color:var(--muted); font-size:14px; padding:2rem 1.5rem 4rem; max-width:760px; margin:0 auto; }
+    /* optional print friendliness */
+    @media print { .cta { display:none } a { text-decoration:none } }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Bubble Energy Storage</h1>
-    <p>High-Temperature Compressed-Air Energy Storage for the Renewable Era</p>
-  </header>
+<main>
+  <h1>We are building permanence for a renewable grid.</h1>
 
-  <section>
-    <h2>About Bubble</h2>
-    <p>
-      <strong>Bubble</strong> is a next-generation <span class="highlight">compressed-air energy storage (CAES)</span> system engineered to
-      provide long-duration, high-efficiency renewable firming. It stores air at <strong>200 bar</strong> and temperatures exceeding
-      <strong>1000 °C</strong>, delivering exceptional energy density and life expectancy.
-    </p>
-    <p>
-      Developed in collaboration with <strong>TNO (Rijswijk Geo-Energy Facility)</strong>, Bubble is advancing toward
-      <span class="highlight">TRL-6 validation</span> with pilot execution planned before mid-2026.
-    </p>
+  <p class="lede">
+    The energy transition doesn’t fail for lack of electrons. It fails when those electrons
+    are <em>late</em>, <em>lost</em>, or <em>locked</em>. Intermittency is not a nuisance—it is
+    the constraint. The grid needs storage that behaves like infrastructure, not consumables.
+  </p>
 
-    <div class="metrics">
-      <div class="metric">
-        <h3>100 MWh</h3>
-        <p>Per-system capacity</p>
-      </div>
-      <div class="metric">
-        <h3>72–75 %</h3>
-        <p>Round-trip efficiency</p>
-      </div>
-      <div class="metric">
-        <h3>€&lt;80 / kWh</h3>
-        <p>Installed cost target</p>
-      </div>
-      <div class="metric">
-        <h3>50 Years</h3>
-        <p>Design lifetime</p>
-      </div>
-    </div>
+  <hr class="rule">
 
-    <h2>Our Mission</h2>
-    <p>
-      To deliver grid-scale flexibility <strong>without lithium, combustion, or rare materials</strong>,
-      enabling 24/7 renewable power at the lowest lifecycle cost.
-    </p>
+  <h2>The problem</h2>
+  <p>
+    Today’s grid-scale storage leans on short-lived chemistries, complex supply chains,
+    fire risk, and degradation curves that compound into operational drag.
+    We curtail renewables, overbuild networks, and still pay for scarcity.
+  </p>
+  <p class="quiet">This is misallocation at continental scale.</p>
 
-    <h2>Investment & Partnerships</h2>
-    <p>
-      Bubble is currently preparing its TRL-6 demonstration phase and seeking <strong>strategic investors and partners</strong>
-      aligned with Europe’s energy-transition goals. Engagement with <strong>EIT InnoEnergy</strong> and other leading institutions
-      is ongoing to accelerate industrialisation.
-    </p>
+  <h2>The premise</h2>
+  <p>
+    A durable grid demands a durable store: abundant materials, simple physics, long life,
+    and stable performance across decades. Storage must be civil, not disposable—measured
+    in <strong>years</strong> and <strong>cycles</strong>, not firmware versions.
+  </p>
 
-    <a href="mailto:info@bubble.energy" class="cta">Contact Us</a>
-  </section>
+  <h2>The answer</h2>
+  <p>
+    <strong>Bubble</strong> is high-temperature compressed-air energy storage.
+    We store energy as pressurised air and high-grade heat—no lithium, no combustion,
+    no rare metals. Built like infrastructure; operated like a power asset.
+  </p>
 
-  <footer>
-    &copy; 2025 Bubble Energy Storage — Breda, Netherlands<br>
-    info@bubble.energy
-  </footer>
+  <h2>What this enables</h2>
+  <p>Firm power from variable renewables. Fewer curtailment hours. Higher capture rates. Lower system cost.</p>
+  <p class="quiet">In practice: long-duration flexibility using planetary materials—air, rock, steel, ceramics.</p>
+
+  <h2>Principles we refuse to compromise</h2>
+  <p>1) <strong>Longevity over replacement.</strong> Design life in decades, not product cycles.</p>
+  <p>2) <strong>Safety by physics.</strong> Non-flammable working media. Fail-safe architectures.</p>
+  <p>3) <strong>Material honesty.</strong> Abundant inputs. No hostage supply chains.</p>
+  <p>4) <strong>Thermodynamic respect.</strong> Minimise entropy creation; capture useful heat.</p>
+  <p>5) <strong>Grid fit.</strong> Modularity, siting flexibility, and civil-works pragmatism.</p>
+
+  <h2>Commitment</h2>
+  <p>
+    We will validate openly with independent partners. We will publish what matters.
+    We will prove performance at meaningful scale and invite scrutiny.
+  </p>
+
+  <h2>Where we are</h2>
+  <p>
+    Advancing toward an integrated TRL-6 demonstration with <strong>TNO</strong> in the Netherlands.
+    Industrial partners are aligned; the pilot pathway is defined.
+  </p>
+
+  <h2>What we ask</h2>
+  <p>
+    If you build, finance, regulate, or operate the future grid—and you believe
+    storage should be infrastructure—work with us.
+  </p>
+
+  <a class="cta" href="mailto:info@bubble.engineering">Contact: info@bubble.engineering</a>
+</main>
+
+<footer>
+  Bubble Energy Storage — Breda, Netherlands · © 2025<br>
+  This page is intentionally simple: text first, substance over spectacle.
+</footer>
 </body>
 </html>
