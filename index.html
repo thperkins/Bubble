@@ -18,7 +18,7 @@
       text-rendering: optimizeLegibility;
     }
 
-    /* === Background animation canvas === */
+    /* full-screen animation layer */
     canvas#warp {
       position: fixed;
       top: 0;
@@ -29,41 +29,44 @@
       display: block;
     }
 
-    /* === Content layout === */
+    /* layout container */
     body {
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      height: 100vh;
+      overflow: hidden;
     }
 
     main {
-      max-width: 640px;
-      width: 90%;
+      width: clamp(60%, 70vw, 680px);
       text-align: left;
       font-weight: 400;
-      line-height: 1.6;
-      font-size: clamp(18px, 3.8vw, 22px);
-      padding: 2rem 0;
+      line-height: 1.55;
+      /* font scales with both width and height */
+      font-size: min(2.2vh, 2.3vw);
     }
 
-    p { margin: 0 0 1.4em 0; }
+    p { margin: 0 0 1.2em 0; }
     strong { font-weight: 600; }
+
     a {
       color: inherit;
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
-    /* Prevent text cutoff on short viewports (e.g., mobile) */
-    @media (max-height: 750px) {
-      body { align-items: flex-start; }
-      main { padding-top: 10vh; }
+    @media (max-width: 600px) {
+      main {
+        width: 88%;
+        font-size: min(2.3vh, 4.2vw);
+        line-height: 1.6;
+      }
     }
 
     @media print {
-      body { display: block; }
-      main { margin: 10vh auto; }
+      body { display: block; height: auto; overflow: visible; }
+      main { margin: 10vh auto; font-size: 16px; }
       a { text-decoration: none; }
     }
   </style>
@@ -79,7 +82,6 @@
 </head>
 
 <body>
-  <!-- Background animation -->
   <canvas id="warp"></canvas>
 
   <main>
@@ -119,7 +121,7 @@
     <p><a href="mailto:tom@bubble.engineering">Contact</a></p>
   </main>
 
-  <!-- WarpSpeed background effect -->
+  <!-- WarpSpeed animation -->
   <script src="https://fdossena.com/warpspeed/warpspeed.min.js"></script>
   <script>
     new WarpSpeed("warp", {
