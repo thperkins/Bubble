@@ -21,14 +21,15 @@ canvas#bubbles {
   display: block;
 }
 
-/* layout container */
+/* main layout logic */
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-y: auto;              /* allow scrolling if needed */
   text-align: left;
+  padding: 5vh 0;                /* safe vertical breathing room */
 }
 
 main {
@@ -36,6 +37,15 @@ main {
   font-weight: 400;
   line-height: 1.55;
   font-size: min(2vh, 2.1vw);
+  box-sizing: border-box;
+}
+
+/* mobile and small height safeguard */
+@media (max-height: 750px) {
+  body {
+    align-items: flex-start;
+    padding-top: 8vh;
+  }
 }
 
 p { margin: 0 0 1.2em 0; }
