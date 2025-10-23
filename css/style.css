@@ -55,17 +55,24 @@ main {
 p { margin: 0 0 1.2em 0; }
 strong { font-weight: 600; }
 
-/* Contact link styling — elegant, not default blue */
-a {
-  color: inherit;
+/* Contact link — override UA colors */
+main a,
+main a:visited,
+main a:active {
+  color: inherit;                 /* kills blue/purple */
   text-decoration: underline;
   text-underline-offset: 3px;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
 }
-a:hover {
-  opacity: 1;
+
+/* subtle hover + mobile tap */
+main a { opacity: 0.85; transition: opacity .2s ease; }
+main a:hover { opacity: 1; }
+main a:focus-visible {
+  outline: 2px solid currentColor; /* accessible focus */
+  outline-offset: 2px;
+  border-radius: 2px;
 }
+a { -webkit-tap-highlight-color: rgba(0,0,0,.08); }
 
 /* Mobile scaling */
 @media (max-width: 600px) {
