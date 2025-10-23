@@ -127,7 +127,7 @@
   <!-- WarpSpeed animation -->
   <script src="https://fdossena.com/warpspeed/warpspeed.min.js"></script>
   <script>
-    new WarpSpeed("warp", {
+    let warp = new WarpSpeed("warp", {
       speed: 1,
       speedAdjFactor: 0.1,
       density: 1,
@@ -138,10 +138,27 @@
       backgroundColor: "#ffffff",
       starColor: "#6094b5"
     });
-
-    // Pause/resume animation when tab visibility changes
+  
+    // Properly pause/resume animation when tab visibility changes
     document.addEventListener("visibilitychange", () => {
-      warp.speed = document.hidden ? 0 : 1;
+      if (document.hidden) {
+        // Fully stop the animation and clear the canvas
+        cancelAnimationFrame(warp.animationFrame);
+        warp = null;
+      } else {
+        // Recreate the WarpSpeed instance cleanly
+        warp = new WarpSpeed("warp", {
+          speed: 1,
+          speedAdjFactor: 0.1,
+          density: 1,
+          shape: "circle",
+          warpEffect: false,
+          depthFade: true,
+          starSize: 10,
+          backgroundColor: "#ffffff",
+          starColor: "#6094b5"
+        });
+      }
     });
   </script>
 
