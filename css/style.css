@@ -2,8 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: auto;                 /* allow page height to expand naturally */
-  min-height: 100%;
+  height: 100%;
   background: none;
   color: #000;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -12,7 +11,7 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-/* full-screen animation layer */
+/* background layer */
 canvas#bubbles {
   position: fixed;
   top: 0;
@@ -23,20 +22,18 @@ canvas#bubbles {
   display: block;
 }
 
-/* layout container */
+/* main container — perfectly centred when space allows */
 body {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 5vh 0;
+  height: 100vh;
+  overflow: hidden;                 /* no scroll by default */
   text-align: left;
-  overflow-x: hidden;           /* no horizontal scroll */
-  overflow-y: auto;             /* vertical scroll when needed */
-  -webkit-overflow-scrolling: touch;  /* smooth scroll on iOS */
+  background: none;
 }
 
+/* text content */
 main {
   width: clamp(60%, 70vw, 680px);
   font-weight: 400;
@@ -45,14 +42,32 @@ main {
   box-sizing: border-box;
 }
 
-/* small screen and low-height safeguard */
+/* if viewport is too short, enable scroll and top-align content */
 @media (max-height: 750px) {
   body {
-    justify-content: flex-start;
-    padding-top: 8vh;
+    align-items: flex-start;
+    overflow-y: auto;
+    padding-top: 6vh;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
+p { margin: 0 0 1.2em 0; }
+strong { font-weight: 600; }
+
+/* Contact link styling — elegant, not default blue */
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+a:hover {
+  opacity: 1;
+}
+
+/* Mobile scaling */
 @media (max-width: 600px) {
   main {
     width: 88%;
@@ -61,8 +76,9 @@ main {
   }
 }
 
+/* Print fallback */
 @media print {
   body { display: block; height: auto; overflow: visible; }
   main { margin: 10vh auto; font-size: 16px; }
-  a { text-decoration: none; }
+  a { text-decoration: none; opacity: 1; }
 }
