@@ -11,7 +11,7 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-/* background layer */
+/* background animation canvas */
 canvas#bubbles {
   position: fixed;
   top: 0;
@@ -22,18 +22,18 @@ canvas#bubbles {
   display: block;
 }
 
-/* main container — perfectly centred when space allows */
+/* perfect centering on large screens */
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  overflow: hidden;                 /* no scroll by default */
+  overflow: hidden;              /* no scroll on desktop */
   text-align: left;
   background: none;
 }
 
-/* text content */
+/* text container */
 main {
   width: clamp(60%, 70vw, 680px);
   font-weight: 400;
@@ -42,7 +42,7 @@ main {
   box-sizing: border-box;
 }
 
-/* if viewport is too short, enable scroll and top-align content */
+/* scroll & top-align for small screens */
 @media (max-height: 750px) {
   body {
     align-items: flex-start;
@@ -55,26 +55,29 @@ main {
 p { margin: 0 0 1.2em 0; }
 strong { font-weight: 600; }
 
-/* Contact link — override UA colors */
-main a,
-main a:visited,
-main a:active {
-  color: inherit;                 /* kills blue/purple */
+/* --- Link styling (restored from 404 page) --- */
+a,
+a:visited,
+a:active {
+  color: inherit;
   text-decoration: underline;
   text-underline-offset: 3px;
+  opacity: 0.7;
+  transition: opacity 0.25s ease, text-underline-offset 0.25s ease;
 }
 
-/* subtle hover + mobile tap */
-main a { opacity: 0.85; transition: opacity .2s ease; }
-main a:hover { opacity: 1; }
-main a:focus-visible {
-  outline: 2px solid currentColor; /* accessible focus */
-  outline-offset: 2px;
-  border-radius: 2px;
+a:hover {
+  opacity: 1;
+  text-underline-offset: 5px;
 }
-a { -webkit-tap-highlight-color: rgba(0,0,0,.08); }
 
-/* Mobile scaling */
+a:focus-visible {
+  outline: none;
+  box-shadow: 0 2px 0 currentColor;
+}
+
+/* --- End link styling --- */
+
 @media (max-width: 600px) {
   main {
     width: 88%;
@@ -83,7 +86,6 @@ a { -webkit-tap-highlight-color: rgba(0,0,0,.08); }
   }
 }
 
-/* Print fallback */
 @media print {
   body { display: block; height: auto; overflow: visible; }
   main { margin: 10vh auto; font-size: 16px; }
