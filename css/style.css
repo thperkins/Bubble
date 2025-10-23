@@ -55,6 +55,23 @@ main {
 p { margin: 0 0 1.2em 0; }
 strong { font-weight: 600; }
 
+/* Headline styling (from 404 aesthetic) */
+h1 {
+  font-weight: 200;                  /* ultra-thin */
+  font-size: min(8vh, 8vw);
+  margin: 0 0 0.4em 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-weight: 300;
+  font-size: min(3.5vh, 3.5vw);
+  margin: 0 0 1.5em 0;
+  color: #333;
+  line-height: 1.3;
+}
+
 /* --- Link styling (restored from 404 page) --- */
 a,
 a:visited,
