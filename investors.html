@@ -13,7 +13,7 @@
 (async()=>{
   const t = new URLSearchParams(window.location.search).get('t');
   if(!t) return document.body.textContent="Access denied.";
-  const res = await fetch('https://script.google.com/macros/s/AKfycbxF1kVObyUP53hA23CIw8BmC65-T6PKlTCjz6MvulD_fq2AhSf-5_tm5O7P1su-bzhy/exec?t='+t, {
+  const res = await fetch('https://script.google.com/macros/s/AKfycbwEqh6LCOxLjrsL-y_B5n3g31DuKDgga6dbWc57a_ZKUx-JuxPNkeLzNQVuT0VD8jGh/exec?t='+t, {
     mode: 'cors'
   });
   const txt = await res.text();
