@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<title>Bubble Investor Portal</title>
+<title>Investor Portal | Bubble</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 </head>
 <body>
 <div id="content">Validating access…</div>
@@ -10,7 +13,9 @@
 (async()=>{
   const t = new URLSearchParams(window.location.search).get('t');
   if(!t) return document.body.textContent="Access denied.";
-  const res = await fetch('https://script.google.com/macros/s/AKfycbxF1kVObyUP53hA23CIw8BmC65-T6PKlTCjz6MvulD_fq2AhSf-5_tm5O7P1su-bzhy/exec?t='+t);
+  const res = await fetch('https://script.google.com/macros/s/AKfycbxF1kVObyUP53hA23CIw8BmC65-T6PKlTCjz6MvulD_fq2AhSf-5_tm5O7P1su-bzhy/exec?t='+t, {
+    mode: 'cors'
+  });
   const txt = await res.text();
   if(txt==="valid"){
     document.getElementById('content').innerHTML=`
