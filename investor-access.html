@@ -26,7 +26,7 @@
     const data = new FormData(e.target);
   
     // no JSON; use URL-encoded body so browser skips the CORS pre-flight
-    const res = await fetch('https://script.google.com/macros/s/AKfycbzpbkZemn9lZKCoF00Q2YoRJWYbfvNyRx0fDrkpLXlXIIDhGxd1d9OH4dSuaY_8DVVX/exec', {
+    const res = await fetch('https://script.google.com/macros/s/AKfycby4eVmfJjuwHLyhFj6bV1ndr3IkxPzpXjtXMXxMQgW56n1wYjgDCuiHuH9lHjhv0t-p/exec', {
       method: 'POST',
       body: new URLSearchParams(data)
     });
