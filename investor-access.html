@@ -24,7 +24,7 @@
   document.getElementById('accessForm').addEventListener('submit', async e => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
-    const res = await fetch('https://script.google.com/macros/s/AKfycbxF1kVObyUP53hA23CIw8BmC65-T6PKlTCjz6MvulD_fq2AhSf-5_tm5O7P1su-bzhy/exec', {
+    const res = await fetch('https://script.google.com/macros/s/AKfycbwEqh6LCOxLjrsL-y_B5n3g31DuKDgga6dbWc57a_ZKUx-JuxPNkeLzNQVuT0VD8jGh/exec', {
       method: 'POST',
       mode: 'cors',
       body: JSON.stringify(data),
