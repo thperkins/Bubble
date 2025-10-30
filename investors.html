@@ -1,34 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Investor Portal | Bubble</title>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
+<title>Bubble Investor Portal</title>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div id="content">Validating access…</div>
+<canvas id="bubbles"></canvas>
+
+<main>
+  <div id="content">
+    <h2>Validating access…</h2>
+  </div>
+</main>
+
 <script>
-(async()=>{
+(async () => {
+  const content = document.getElementById('content');
   const t = new URLSearchParams(window.location.search).get('t');
-  if(!t) return document.body.textContent="Access denied.";
-  const res = await fetch('https://script.google.com/macros/s/AKfycby4eVmfJjuwHLyhFj6bV1ndr3IkxPzpXjtXMXxMQgW56n1wYjgDCuiHuH9lHjhv0t-p/exec?t='+t, {
-    mode: 'cors'
-  });
-  const txt = await res.text();
-  if(txt==="valid"){
-    document.getElementById('content').innerHTML=`
-      <h1>Bubble Investor Materials</h1>
-      <p>Confidential — not for distribution.</p>
-      <ul>
-        <li><a href="/files/Bubble_Investor_Deck.pdf">Investor Deck (PDF)</a></li>
-        <li><a href="/files/TRL_Plan.pdf">TRL Plan</a></li>
-      </ul>`;
-  }else{
-    document.body.textContent="Access denied or link expired.";
+  if (!t) {
+    content.innerHTML = "<h2>Access denied — missing token.</h2>";
+    return;
+  }
+
+  try {
+    const res = await fetch('https://script.google.com/macros/s/AKfycby4eVmfJjuwHLyhFj6bV1ndr3IkxPzpXjtXMXxMQgW56n1wYjgDCuiHuH9lHjhv0t-p/exec?t=' + encodeURIComponent(t));
+    const txt = (await res.text()).trim();
+
+    if (txt === "valid") {
+      content.innerHTML = `
+        <h1>Bubble Investor Materials</h1>
+        <p>Confidential — not for distribution.</p>
+        <ul>
+          <li><a href="/files/Bubble_Investor_Deck.pdf" target="_blank">Investor Deck (PDF)</a></li>
+          <li><a href="/files/TRL_Plan.pdf" target="_blank">TRL Plan</a></li>
+        </ul>
+      `;
+    } else if (txt.startsWith("error")) {
+      content.innerHTML = "<h2>Server error. Please try again later.</h2>";
+    } else {
+      content.innerHTML = "<h2>Access denied or link expired.</h2>";
+    }
+  } catch (err) {
+    content.innerHTML = "<h2>Network error — please check your connection.</h2>";
   }
 })();
+</script>
+
+<!-- Optional: bubble background -->
+<script>
+const canvas = document.getElementById('bubbles');
+const ctx = canvas.getContext('2d');
+let w, h, bubbles;
+function resize(){
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+  bubbles = Array.from({length:40},()=>({
+    x:Math.random()*w,
+    y:Math.random()*h,
+    r:Math.random()*3+1,
+    d:Math.random()*0.5+0.3
+  }));
+}
+function draw(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='rgba(0,0,0,0.05)';
+  for(const b of bubbles){
+    ctx.beginPath();
+    ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+    ctx.fill();
+    b.y -= b.d;
+    if(b.y<-10){ b.y=h+10; b.x=Math.random()*w; }
+  }
+  requestAnimationFrame(draw);
+}
+window.addEventListener('resize',resize);
+resize(); draw();
 </script>
 </body>
 </html>
