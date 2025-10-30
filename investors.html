@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<title>Bubble Investor Portal</title>
+</head>
+<body>
+<div id="content">Validating access…</div>
+<script>
+(async()=>{
+  const t = new URLSearchParams(window.location.search).get('t');
+  if(!t) return document.body.textContent="Access denied.";
+  const res = await fetch('YOUR_APPS_SCRIPT_URL?t='+t);
+  const txt = await res.text();
+  if(txt==="valid"){
+    document.getElementById('content').innerHTML=`
+      <h1>Bubble Investor Materials</h1>
+      <p>Confidential — not for distribution.</p>
+      <ul>
+        <li><a href="/files/Bubble_Investor_Deck.pdf">Investor Deck (PDF)</a></li>
+        <li><a href="/files/TRL_Plan.pdf">TRL Plan</a></li>
+      </ul>`;
+  }else{
+    document.body.textContent="Access denied or link expired.";
+  }
+})();
+</script>
+</body>
+</html>
