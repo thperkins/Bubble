@@ -58,7 +58,7 @@ ul li { margin: 0.6em 0; }
     // wait 3 seconds to show animation elegantly
     await new Promise(r => setTimeout(r, 1500));
 
-    const res = await fetch('https://script.google.com/macros/s/AKfycby39WSsTA4yDGE2AmC0-z6axyWod3ICCiJamJJgWqUSdZQhKCKs2yfWnEi3fQvTiV2H/exec?t=' + encodeURIComponent(t));
+    const res = await fetch('https://script.google.com/macros/s/AKfycbwxEVCQQQAAohMELVrwnJCjmztzWAR7_042ycv5G7LPn7nia2Zen7bI6CocDX802LGn/exec?t=' + encodeURIComponent(t));
     const result = await res.json();
     
     if (result.status === "valid") {
