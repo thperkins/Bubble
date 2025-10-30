@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<title>Investor Access | Bubble</title>
+</head>
+<body>
+  <h2>Investor Access</h2>
+  <form id="accessForm">
+    <input name="name" placeholder="Full Name" required><br>
+    <input name="email" type="email" placeholder="Email" required><br>
+    <label><input type="checkbox" required>
+      I acknowledge that the following information is confidential.
+    </label><br>
+    <button type="submit">Request Access</button>
+  </form>
+  <p id="msg"></p>
+
+  <script>
+  document.getElementById('accessForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target));
+    const res = await fetch('YOUR_APPS_SCRIPT_URL', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {'Content-Type': 'application/json'}
+    });
+    document.getElementById('msg').textContent =
+      res.ok ? "Check your email for your unique access link." :
+               "Submission failed. Try again.";
+  });
+  </script>
+</body>
+</html>
