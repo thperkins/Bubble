@@ -6,19 +6,48 @@
 <meta name="robots" content="noindex,nofollow">
 <title>Bubble Investor Portal</title>
 <link rel="stylesheet" href="/style.css">
+<style>
+/* inline extras for fade + centering */
+#content {
+  text-align: center;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+#content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(0,0,0,0.1);
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 2em auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+ul { list-style: none; padding: 0; }
+ul li { margin: 0.6em 0; }
+</style>
 </head>
 <body>
 <canvas id="bubbles"></canvas>
 
 <main>
   <div id="content">
-    <h2>Validating access…</h2>
+    <h1>Validating access…</h1>
+    <div class="spinner"></div>
   </div>
 </main>
 
 <script>
 (async () => {
   const content = document.getElementById('content');
+  content.classList.add('visible');
+
   const t = new URLSearchParams(window.location.search).get('t');
   if (!t) {
     content.innerHTML = "<h2>Access denied — missing token.</h2>";
@@ -26,18 +55,44 @@
   }
 
   try {
+    // wait 3 seconds to show animation elegantly
+    await new Promise(r => setTimeout(r, 3000));
+
     const res = await fetch('https://script.google.com/macros/s/AKfycby4eVmfJjuwHLyhFj6bV1ndr3IkxPzpXjtXMXxMQgW56n1wYjgDCuiHuH9lHjhv0t-p/exec?t=' + encodeURIComponent(t));
     const txt = (await res.text()).trim();
 
     if (txt === "valid") {
+      // We don't have investor name in GET response, but we can derive it from local storage (optional) or a query param
+      const name = localStorage.getItem('investorName') || "Investor";
+
       content.innerHTML = `
-        <h1>Bubble Investor Materials</h1>
-        <p>Confidential — not for distribution.</p>
-        <ul>
-          <li><a href="/files/Bubble_Investor_Deck.pdf" target="_blank">Investor Deck (PDF)</a></li>
-          <li><a href="/files/TRL_Plan.pdf" target="_blank">TRL Plan</a></li>
-        </ul>
+        <h1>Welcome, ${name}</h1>
+        <p>Access granted. Below you’ll find a curated set of materials introducing the <strong>Bubble High-Temperature Compressed-Air Energy Storage System</strong>.</p>
+        <section style="text-align:left;margin-top:2.5em;">
+          <h2>Key Materials</h2>
+          <ul>
+            <li><a href="/files/Bubble_Investor_Deck.pdf" target="_blank">Investor Deck — Market & Technical Overview (PDF)</a></li>
+            <li><a href="/files/TRL_Plan.pdf" target="_blank">TRL Development Plan (PDF)</a></li>
+            <li><a href="/files/Bubble_Economics_Summary.pdf" target="_blank">Techno-Economic Summary (PDF)</a></li>
+          </ul>
+
+          <h2>Highlights</h2>
+          <ul>
+            <li>75 MWh per system, scalable to 120 MWh</li>
+            <li>200 bar @ 1050 °C high-temperature storage</li>
+            <li>Round-trip efficiency ≈ 73 %</li>
+            <li>Projected lifetime > 40 years, negligible degradation</li>
+            <li>CAPEX target &lt; €80 / kWh (installed)</li>
+          </ul>
+
+          <h2>Next Milestones</h2>
+          <p>Prototype test campaign at TNO Rijswijk facility (TRL 5) planned for 2026, followed by scale-up to 100 MWh demonstration site.  
+          Capital partners and strategic collaborators are now being shortlisted.</p>
+
+          <p><a href="mailto:hello@bubble.engineering">Contact the team</a> to discuss partnership or investment opportunities.</p>
+        </section>
       `;
+      content.classList.add('visible');
     } else if (txt.startsWith("error")) {
       content.innerHTML = "<h2>Server error. Please try again later.</h2>";
     } else {
@@ -49,7 +104,7 @@
 })();
 </script>
 
-<!-- Optional: bubble background -->
+<!-- Bubble animation -->
 <script>
 const canvas = document.getElementById('bubbles');
 const ctx = canvas.getContext('2d');
