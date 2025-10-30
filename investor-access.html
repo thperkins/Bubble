@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<title>Investor Access | Bubble</title>
+<title>Investor Portal | Bubble</title>
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 </head>
 <body>
   <h2>Investor Access</h2>
@@ -22,6 +26,7 @@
     const data = Object.fromEntries(new FormData(e.target));
     const res = await fetch('https://script.google.com/macros/s/AKfycbxF1kVObyUP53hA23CIw8BmC65-T6PKlTCjz6MvulD_fq2AhSf-5_tm5O7P1su-bzhy/exec', {
       method: 'POST',
+      mode: 'cors',
       body: JSON.stringify(data),
       headers: {'Content-Type': 'application/json'}
     });
