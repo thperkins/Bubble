@@ -23,13 +23,14 @@
   <script>
   document.getElementById('accessForm').addEventListener('submit', async e => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.target));
-    const res = await fetch('https://script.google.com/macros/s/AKfycbwEqh6LCOxLjrsL-y_B5n3g31DuKDgga6dbWc57a_ZKUx-JuxPNkeLzNQVuT0VD8jGh/exec', {
+    const data = new FormData(e.target);
+  
+    // no JSON; use URL-encoded body so browser skips the CORS pre-flight
+    const res = await fetch('https://script.google.com/macros/s/NEW_EXEC_ID/exec', {
       method: 'POST',
-      mode: 'cors',
-      body: JSON.stringify(data),
-      headers: {'Content-Type': 'application/json'}
+      body: new URLSearchParams(data)
     });
+  
     document.getElementById('msg').textContent =
       res.ok ? "Check your email for your unique access link." :
                "Submission failed. Try again.";
