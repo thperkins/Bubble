@@ -20,7 +20,7 @@
   document.getElementById('accessForm').addEventListener('submit', async e => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
-    const res = await fetch('YOUR_APPS_SCRIPT_URL', {
+    const res = await fetch('https://script.google.com/macros/s/AKfycbxF1kVObyUP53hA23CIw8BmC65-T6PKlTCjz6MvulD_fq2AhSf-5_tm5O7P1su-bzhy/exec', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {'Content-Type': 'application/json'}
