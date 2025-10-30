@@ -59,12 +59,10 @@ ul li { margin: 0.6em 0; }
     await new Promise(r => setTimeout(r, 3000));
 
     const res = await fetch('https://script.google.com/macros/s/AKfycby4eVmfJjuwHLyhFj6bV1ndr3IkxPzpXjtXMXxMQgW56n1wYjgDCuiHuH9lHjhv0t-p/exec?t=' + encodeURIComponent(t));
-    const txt = (await res.text()).trim();
-
-    if (txt === "valid") {
-      // We don't have investor name in GET response, but we can derive it from local storage (optional) or a query param
-      const name = localStorage.getItem('investorName') || "Investor";
-
+    const result = await res.json();
+    
+    if (result.status === "valid") {
+      const name = result.name || "Investor";
       content.innerHTML = `
         <h1>Welcome, ${name}</h1>
         <p>Access granted. Below you’ll find a curated set of materials introducing the <strong>Bubble High-Temperature Compressed-Air Energy Storage System</strong>.</p>
