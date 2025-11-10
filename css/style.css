@@ -93,6 +93,23 @@ a:focus-visible {
   box-shadow: 0 2px 0 currentColor;
 }
 
+.investor-link {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+  z-index: 1000;
+}
+
+.investor-link:hover {
+  color: #fff;
+  opacity: 1;
+}
+
 /* --- End link styling --- */
 
 @media (max-width: 600px) {
@@ -100,6 +117,13 @@ a:focus-visible {
     width: 88%;
     font-size: min(2.3vh, 4.2vw);
     line-height: 1.6;
+  }
+  .investor-link {
+    position: static;
+    display: block;
+    margin: 2rem auto 0 auto;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
   }
 }
 
