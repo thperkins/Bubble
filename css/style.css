@@ -99,14 +99,14 @@ a:focus-visible {
   right: 20px;
   font-family: inherit;
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: #222;
   text-decoration: none;
   transition: color 0.2s ease, opacity 0.2s ease;
   z-index: 1000;
 }
 
 .investor-link:hover {
-  color: #fff;
+  color: black;
   opacity: 1;
 }
 
