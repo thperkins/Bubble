@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>Bubble Investor Portal</title>
-<link rel="stylesheet" href="/css/style.css">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Investor Portal | Bubble</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bubble - Building our ductile energy system with strategic long-duration energy storage.">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHDVE67974"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LHDVE67974');
+  </script>
+</head>
 <style>
 /* inline extras for fade + centering */
 #content {
@@ -76,15 +93,15 @@ ul li { margin: 0.6em 0; }
 
           <h2>Highlights</h2>
           <ul>
-            <li>75 MWh per system, scalable to 120 MWh</li>
+            <li>100 MWh per system</li>
             <li>200 bar @ 1050 °C high-temperature storage</li>
-            <li>Round-trip efficiency ≈ 73 %</li>
+            <li>Round-trip efficiency ≈ 70 %</li>
             <li>Projected lifetime > 40 years, negligible degradation</li>
             <li>CAPEX target &lt; €80 / kWh (installed)</li>
           </ul>
 
           <h2>Next Milestones</h2>
-          <p>Prototype test campaign at TNO Rijswijk facility (TRL 5) planned for 2026, followed by scale-up to 100 MWh demonstration site.  
+          <p>Prototype test campaign at TNO Rijswijk facility (TRL 6) planned for 2026, followed by scale-up to 100 MWh demonstration site.  
           Capital partners and strategic collaborators are now being shortlisted.</p>
 
           <p><a href="mailto:hello@bubble.engineering">Contact the team</a> to discuss partnership or investment opportunities.</p>
@@ -102,35 +119,6 @@ ul li { margin: 0.6em 0; }
 })();
 </script>
 
-<!-- Bubble animation -->
-<script>
-const canvas = document.getElementById('bubbles');
-const ctx = canvas.getContext('2d');
-let w, h, bubbles;
-function resize(){
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-  bubbles = Array.from({length:40},()=>({
-    x:Math.random()*w,
-    y:Math.random()*h,
-    r:Math.random()*3+1,
-    d:Math.random()*0.5+0.3
-  }));
-}
-function draw(){
-  ctx.clearRect(0,0,w,h);
-  ctx.fillStyle='rgba(0,0,0,0.05)';
-  for(const b of bubbles){
-    ctx.beginPath();
-    ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
-    ctx.fill();
-    b.y -= b.d;
-    if(b.y<-10){ b.y=h+10; b.x=Math.random()*w; }
-  }
-  requestAnimationFrame(draw);
-}
-window.addEventListener('resize',resize);
-resize(); draw();
-</script>
+
 </body>
 </html>
